@@ -13,17 +13,17 @@ Böyle bir senaryoda üretilen her nesne için depositMoney, withdrawMoney metot
 Bu durum, kullanıcı tipi sayılamayacak kadar arttığında kontrol edilemez. Ayrıca kodda kullanılan teknik, clean code ve SOLID prensibine aykırıdır.
 Bahsedilen durumları engellemek için, delegate design pattern kullanılmıştır.
 
-1- Öncelikle, kullanıcı tiplerinin hepsi aynı metodu kullanacağından dolayı, User adında bir protocol oluşturulmuştur.
-2- Her kullanıcı meslek tipi için sınıflar oluşturulmuştur ve bu sınıflar, User protocol'ünü inherit etmiştir.
-3- Her sınıf, User protocol içerisinde yer alan metotları kendine göre implement etmiştir.
-4- ATM adında bir sınıf oluşturulmuştur.
-5- ATM sınıfı içinde User tipinde bir delegate property si oluşturulmuştur.
-6- Kullanıcı sınıfları içinde init constructor u içerisinde ATM tipinde alınan atm parametresinin delegate property'sine, "self" yani Kullanıcı tipinin kendisi referans olarak verilmiştir.
-7- ATM sınıfı içerisindeki withdrawMoney ve depositMoney adında metotlar oluşturulmuştur.
-   Bu metotların içerisinde property ye atanan ve User protocol'ünün sahip olduğu metotlar çağırılmıştır.
-8- Ana fonksiyonda ise atm ve sırasıyla kullanıcıların nesneleri oluşturulmuştur.
-9- Oluşturulan nesneler, atm parametresi ile oluşturulmuştur. Bu sayede nesne oluşturulduğu anda atm nesnesinin delegate property'sine nesnenin kendisi atanmış olur.
-10- atm nesnesinin withdrawMoney ve depositMoney metotları çağırıldığında artık üretilmiş olan nesneye göre bu metotlar işlevlerini gerçekleştirir.
+1- Öncelikle, kullanıcı tiplerinin hepsi aynı metodu kullanacağından dolayı, User adında bir protocol oluşturulmuştur.  
+2- Her kullanıcı meslek tipi için sınıflar oluşturulmuştur ve bu sınıflar, User protocol'ünü inherit etmiştir.  
+3- Her sınıf, User protocol içerisinde yer alan metotları kendine göre implement etmiştir.  
+4- ATM adında bir sınıf oluşturulmuştur.  
+5- ATM sınıfı içinde User tipinde bir delegate property si oluşturulmuştur.  
+6- Kullanıcı sınıfları içinde init constructor u içerisinde ATM tipinde alınan atm parametresinin delegate property'sine, "self" yani Kullanıcı tipinin kendisi referans olarak verilmiştir.  
+7- ATM sınıfı içerisindeki withdrawMoney ve depositMoney adında metotlar oluşturulmuştur.  
+   Bu metotların içerisinde property ye atanan ve User protocol'ünün sahip olduğu metotlar çağırılmıştır.  
+8- Ana fonksiyonda ise atm ve sırasıyla kullanıcıların nesneleri oluşturulmuştur.  
+9- Oluşturulan nesneler, atm parametresi ile oluşturulmuştur. Bu sayede nesne oluşturulduğu anda atm nesnesinin delegate property'sine nesnenin kendisi atanmış olur.  
+10- atm nesnesinin withdrawMoney ve depositMoney metotları çağırıldığında artık üretilmiş olan nesneye göre bu metotlar işlevlerini gerçekleştirir.  
 
 Bu sayede ATM sınıfı bu metotları gerçekleştirirken (kullanıcıları bilgilendirirken), kullanıcı tipini, sayısını önemsemeden işlevlerini yerine getirebiliyor.
 İleride atm kullanacak farklı kullanıcılar artsa bile, atm bu olaydan etkilenmeden çalışmaya devam edebilir. Tek koşul kullanıcıların User protocol'ünü implement etmesidir.
