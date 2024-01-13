@@ -1,5 +1,5 @@
 TR:
-Swift dilinde Delegate Design Pattern kullanan bit ATM uygulama örneği.
+Swift dilinde Delegate Design Pattern kullanan bir ATM uygulama örneği.
 
 Swift dilinde "Delegate Design Pattern" oldukça yaygın kullanılan bir tasarım desenidir.
 Peki nedir bu Delegate Design Pattern'i?
